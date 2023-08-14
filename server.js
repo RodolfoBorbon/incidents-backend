@@ -32,7 +32,10 @@ app.listen(port,()=>{
 });
 
 // Middleware setup
-app.use(cors());
+app.use(cors({
+    origin: 'https://comp229-incidents-frontend.azurewebsites.net'
+  }));
+  
 app.use(bodyParser.json());
 
 // Passport configuration
