@@ -1,5 +1,6 @@
 FROM node:latest
 WORKDIR /app
+ENV NODE_ENV production
 COPY package*.json server.js ./
 RUN npm install
 COPY . .
