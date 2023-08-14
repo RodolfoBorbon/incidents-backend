@@ -10,40 +10,44 @@ var User = require("./models/user");
 var passport = require("passport");
 var LocalStrategy = require("passport-local")
 
-const app = express()
-const port = 4800
+const app = express();
+const port = 4800;
+
+// Secret configurations
+const MONGO_DB_URL = 'mongodb+srv://rodolfoborbon:teknu6-dibJod-kuqvyn@cluster0.8ndpeek.mongodb.net/Incident_Management_App?retryWrites=true&w=majority';
+const SESSION_SECRET = 'This is a secret sentence';
+const CORS_ORIGIN = 'https://comp229-incidents-frontend.azurewebsites.net'; 
 
 // Connect to MongoDB
-const mongodatabaseURL = 'mongodb+srv://rodolfoborbon:teknu6-dibJod-kuqvyn@cluster0.8ndpeek.mongodb.net/Incident_Management_App?retryWrites=true&w=majority';
-mongoose.connect(mongodatabaseURL,{
+mongoose.connect(MONGO_DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
 const connection = mongoose.connection;
-connection.once("open",()=>{
-    console.log("MongoDb Connected......")
+connection.once("open", () => {
+    console.log("MongoDb Connected......");
 
-// Start the server
-app.listen(port,()=>{
-    console.log("Server is running port " + port);
-})
-
+    // Start the server
+    app.listen(port, () => {
+        console.log("Server is running on port " + port);
+    });
 });
 
 // Middleware setup
 app.use(cors({
-    origin: 'https://comp229-incidents-frontend.azurewebsites.net'
-  }));
-  
+    origin: CORS_ORIGIN
+}));
+
 app.use(bodyParser.json());
 
 // Passport configuration
 app.use(require('express-session')({
-    secret: 'This is a secret sentence',
+    secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -51,7 +55,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-//Use the routes
+// Use the routes
 app.use(incidentRoutes);
 app.use(authenticationRoutes);
 
