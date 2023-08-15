@@ -16,7 +16,7 @@ const port = process.env.PORT || 4800;
 // Secret configurations
 const MONGO_DB_URL = 'mongodb+srv://rodolfoborbon:teknu6-dibJod-kuqvyn@cluster0.8ndpeek.mongodb.net/Incident_Management_App?retryWrites=true&w=majority';
 const SESSION_SECRET = 'This is a secret sentence';
-const CORS_ORIGIN = 'https://comp229-incidents-frontend.azurewebsites.net'; 
+const CORS_ORIGIN = 'https://cmp229-incidents-frontend.azurewebsites.net'; 
 
 // Connect to MongoDB
 mongoose.connect(MONGO_DB_URL, {
