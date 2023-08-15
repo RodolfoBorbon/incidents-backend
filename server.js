@@ -11,7 +11,7 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local")
 
 const app = express();
-const port = 4800;
+const port = process.env.PORT || 4800;
 
 // Secret configurations
 const MONGO_DB_URL = 'mongodb+srv://rodolfoborbon:teknu6-dibJod-kuqvyn@cluster0.8ndpeek.mongodb.net/Incident_Management_App?retryWrites=true&w=majority';
