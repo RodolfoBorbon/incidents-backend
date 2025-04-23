@@ -1,7 +1,7 @@
 //Back-End/model/incidentmodel.js
 
 const mongoose = require("mongoose")
-const bcrypt = require( 'bcrypt' );
+const bcrypt = require('bcryptjs');  // Changed from bcrypt to bcryptjs
 const jwt = require("jsonwebtoken")
 var Schema  = mongoose.Schema;
 
